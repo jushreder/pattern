@@ -21,7 +21,7 @@ class Index_view:
 
 class Catalog_view:
     def __init__(self):
-        self.object_list = [{'name': 'Boris'}, {'name': 'Doris'}]
+        self.object_list = [{'id':1,'name': 'Boris'}, {'id':2,'name': 'Doris'}]
 
 
     def __call__(self, request):
