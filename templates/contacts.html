@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <form action=""  method="post">
+    <p><b>Тема сообщения:</b><br>
+      <input name="tema" type="text">
+     </p>
+     <p><b>Сообщение:</b><br>
+      <input name="message" type="text">
+     </p>
+    <p><b>email:</b><br>
+      <input name="email" type="text">
+     </p>
+       <p><input type="submit" value="Отправить">
+  </form>
+</div>
+{% endblock %}

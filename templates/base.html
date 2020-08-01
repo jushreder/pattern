@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ object_list.title }}</title>
+  {% endblock %}
+</head>
+<body>
+  <div>
+
+  <ul>
+    <li> <a href="/">Домой</a>
+    </li>
+    <li><a href="/catalog">Каталог</a>
+    </li>
+    <li><a href="/contact">Контакты</a>
+    </li>
+  </ul>
+</div>
+<div>
+  {% block content %}
+  
+  {% endblock %}
+</div>
+</body>
+</html>
