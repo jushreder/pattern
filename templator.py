@@ -17,7 +17,7 @@ def render(file, object_list):
     template = env.get_template(file)
 
     render_str = template.render(object_list=object_list)
-    return render_str.encode(encoding='UTF-8')
+    return render_str
 
 # def render(template_name, object_list):
 #     with open(template_name, encoding='utf_8') as file:

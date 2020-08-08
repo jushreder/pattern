@@ -1,9 +1,9 @@
 '''
  modul page controller
  '''
-
+import json
 from templator import render
-
+from loger import logger
 
 class Index_view:
     '''
@@ -14,40 +14,48 @@ class Index_view:
 
     def __call__(self, request):
         content = {}
-        content['title'] ='Главная'
+        content['title'] = 'Главная'
         content['request'] = request
-        return '200 OK', [render('index.html', content)]
+        return '200 OK', render('index.html', content)
 
 
 class Catalog_view:
     def __init__(self):
-        self.object_list = [{'id':1,'name': 'Boris'}, {'id':2,'name': 'Doris'}]
-
+        self.object_list = [{'id': 1, 'name': 'Boris'},
+                            {'id': 2, 'name': 'Doris'}]
 
     def __call__(self, request):
-        content ={}
-        content['title']= 'Каталог'
+        content = {}
+        content['title'] = 'Каталог'
         content['data'] = self.object_list
-        return '200 OK', [render('catalog.html', content)]
-
-
-def not_found_404_view(request):
-    '''
-    view page not_found_404
-    :param:
-    :return:
-    '''
-    return '404 Not Found', [b'<h1>404 Page Not Found</h1>']
+        return '200 OK', render('catalog.html', content)
 
 
 class Contact:
     '''
     view page Product
     '''
-    def __init__(self):
-        self.object_list = [{'name': 'Boris'}, {'name': 'Doris'}]
 
-    def __call__(self,request):
+    def __init__(self):
+        with open('contacts.json') as file:
+            row = file.read()
+            self.object_list = json.loads(row)
+
+    def __call__(self, request):
         content = {}
-        content['title']= 'Контакты'
-        return '200 OK', [render('contacts.html', content)]
+        if request['method'] == 'POST':
+            with open('message.json', 'w') as file:
+
+                file.write(
+                    json.dumps(
+                        request['data'],
+                        ensure_ascii=False,
+                        indent=2))
+            print(request['data'])
+            content['title'] = 'Главная'
+            return '200 OK', render('index.html', content)
+
+        else:
+            content['title'] = 'Контакты'
+            content['data'] = self.object_list
+            return '200 OK', render('contacts.html', content)
