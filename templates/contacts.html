@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <h1>наши контакты</h1>
+</div>
+<div>
+    {% for object in object_list.data %}
+    <div>
+        <p> город</p>
+        <h3> {{ object.city }}</h3>
+        <p> адрес</p>
+        <h3> {{ object.address }}</h3>
+        <p> телефон</p>
+        <h3> {{ object.phone }}</h3>
+        <p> e-mail:</p>
+        <h3> {{ object.email}}</h3>
+    </div>
+    {% endfor %}
+
+  <form action=""  method="post">
+      <h2>написать нам:</h2>
+    <p><b>тема сообщения:</b><br>
+      <input name="tema" type="text">
+     </p>
+     <p><b>Сообщение:</b><br>
+      <input name="message" type="text">
+     </p>
+    <p><b>email:</b><br>
+      <input name="email" type="text">
+     </p>
+       <p><input type="submit" value="Отправить">
+  </form>
+    <div>
+
+    </div>
+</div>
+{% endblock %}
